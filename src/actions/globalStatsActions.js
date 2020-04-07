@@ -4,11 +4,10 @@ import axios from 'axios';
 export const fetchGlobalStats = () => dispatch => {
    axios
       .get('https://corona.lmao.ninja/all')
-      .then(res => res.data)
-      .then(data =>
+      .then(res =>
          dispatch({
             type: FETCH_GLOBAL_STATS,
-            globalStats: data
+            globalStats: res.data
          })
       )
       .catch(err => console.log(err));

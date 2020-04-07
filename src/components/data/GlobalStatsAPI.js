@@ -1,18 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { MDBCol } from 'mdbreact';
+import { MDBCol, MDBSimpleChart } from 'mdbreact';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchGlobalStats } from '../../actions/globalStatsActions';
 import CountUp from 'react-countup';
 
-class GlobalStatsAPI extends Component {
+export class GlobalStatsAPI extends Component {
    componentDidMount() {
       this.props.fetchGlobalStats();
    }
+
    render() {
       const { cases, deaths, recovered, updated, active, affectedCountries } = this.props.globalStats;
 
-      console.log(cases);
+      if (!cases) {
+         return <h1>Loading</h1>;
+      }
 
       return (
          <Fragment>
@@ -62,8 +65,8 @@ GlobalStatsAPI.propTypes = {
    globalStats: PropTypes.object.isRequired
 };
 
-const maStateToProps = state => ({
+const mapStateToProps = state => ({
    globalStats: state.globalStats.stats
 });
 
-export default connect(maStateToProps, { fetchGlobalStats })(GlobalStatsAPI);
+export default connect(mapStateToProps, { fetchGlobalStats })(GlobalStatsAPI);

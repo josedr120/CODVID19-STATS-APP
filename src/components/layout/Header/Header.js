@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBJumbotron, MDBBtn, MDBIcon, MDBAnimation } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBJumbotron } from 'mdbreact';
 import GlobalStatsAPI from '../../data/GlobalStatsAPI';
 
 class Header extends Component {
@@ -9,7 +9,7 @@ class Header extends Component {
             <MDBContainer className='mt-4 text-center'>
                <MDBRow>
                   <MDBCol>
-                     <MDBJumbotron>
+                     <MDBJumbotron className='z-depth-4 red'>
                         <h5 className='mb-5 display-4'>
                            <i className='rotate fas fa-globe-americas rotate'></i> Global Stats <i className='rotate fas fa-globe-americas'></i>
                         </h5>
