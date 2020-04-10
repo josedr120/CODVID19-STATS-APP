@@ -23,20 +23,10 @@ class App extends Component {
          <Provider store={store}>
             <Fragment>
                <MDBContainer className='my-5'>
-                  <MDBJumbotron>
-                     <h2 className='h1 display-3'>Hello, world!</h2>
+                  <MDBJumbotron className='customHeader'>
+                     <h2 className='h1 display-3 hello'>Hello, world!</h2>
                      <p className='lead'>Welcome to my app, this basic but powerfull, CODVID-19 Stats Tracker, I made to help people track the daily stats. The data is updated in realtime, every hour+.</p>
                      <hr className='my-2' />
-                     <p>Click on the button to see developer info</p>
-                     <MDBBtn color='primary' onClick={this.toggleCollapse('basicCollapse')} style={{ marginBottom: '1rem' }}>
-                        Developer Info
-                     </MDBBtn>
-                     <MDBCollapse id='basicCollapse' isOpen={this.state.collapseID}>
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                           in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                        </p>
-                     </MDBCollapse>
                   </MDBJumbotron>
                </MDBContainer>
                <BrowserRouter>

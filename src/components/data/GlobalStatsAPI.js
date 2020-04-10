@@ -21,37 +21,37 @@ export class GlobalStatsAPI extends Component {
          <Fragment>
             <MDBCol md='4'>
                <h5>Cases</h5>
-               <div className='mt-5 counter'>
+               <div className='my-4 py-4 customCounter'>
                   <CountUp end={cases} separator=',' duration={2.75} />
                </div>
             </MDBCol>
             <MDBCol md='4'>
                <h5>Deaths</h5>
-               <div className='mt-5  counter'>
+               <div className='my-4 py-4  customCounter'>
                   <CountUp end={deaths} separator=',' duration={2.75} />
                </div>
             </MDBCol>
             <MDBCol md='4'>
                <h5>Recovered</h5>
-               <div className='mt-5  counter'>
+               <div className='my-4 py-4  customCounter'>
                   <CountUp end={recovered} separator=',' duration={2.75} />
                </div>
             </MDBCol>
             <MDBCol md='4'>
                <h5>Updated</h5>
-               <div className='mt-5  counter'>
+               <div className='my-4 py-4  customCounter'>
                   <CountUp end={updated} separator=',' duration={2.75} />
                </div>
             </MDBCol>
             <MDBCol md='4'>
                <h5>Active</h5>
-               <div className='mt-5  counter'>
+               <div className='my-4 py-4  customCounter'>
                   <CountUp end={active} separator=',' duration={2.75} />
                </div>
             </MDBCol>
             <MDBCol md='4'>
                <h5>Affected Countries</h5>
-               <div className='mt-5  counter'>
+               <div className='my-4 py-4  customCounter'>
                   <CountUp end={affectedCountries} separator=',' duration={2.75} />
                </div>
             </MDBCol>
@@ -62,11 +62,11 @@ export class GlobalStatsAPI extends Component {
 
 GlobalStatsAPI.propTypes = {
    fetchGlobalStats: PropTypes.func.isRequired,
-   globalStats: PropTypes.object.isRequired
+   globalStats: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-   globalStats: state.globalStats.stats
+const mapStateToProps = (state) => ({
+   globalStats: state.globalStats.stats,
 });
 
 export default connect(mapStateToProps, { fetchGlobalStats })(GlobalStatsAPI);

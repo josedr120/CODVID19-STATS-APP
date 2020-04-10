@@ -10,7 +10,7 @@ class Header extends Component {
                <MDBRow>
                   <MDBCol>
                      <MDBJumbotron className='z-depth-4 red'>
-                        <h5 className='mb-5 display-4'>
+                        <h5 className='mb-5 display-4 customTitle'>
                            <i className='rotate fas fa-globe-americas rotate'></i> Global Stats <i className='rotate fas fa-globe-americas'></i>
                         </h5>
                         <section className='text-center my-5'>

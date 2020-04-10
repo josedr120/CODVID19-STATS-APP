@@ -3,9 +3,8 @@ body {
    color: #000;
 }
 
-.counter {
-   background-color: blue;
-   font-size: large;
+.customCounter {
+   font-size: 25px;
    font-weight: bold;
 }
 
@@ -14,6 +13,7 @@ body {
    -moz-animation: spin 4s linear infinite;
    animation: spin 4s linear infinite;
 }
+
 @-moz-keyframes spin {
    100% {
       -moz-transform: rotate(360deg);
@@ -28,5 +28,21 @@ body {
    100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
+   }
+}
+
+@media (max-width: 750px) {
+   .customTitle {
+      font-size: 2rem;
+   }
+
+   .customHeader {
+      background-color: #eeeeee;
+      text-align: justify;
+   }
+
+   .hello {
+      font-size: 3rem;
+      text-align: center;
    }
 }
