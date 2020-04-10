@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { MDBContainer, MDBNav, MDBNavItem, MDBNavLink, MDBIcon, MDBTabContent, MDBTabPane } from 'mdbreact';
 import UsStatesStats from '../../data/UsStatesStats';
 import AllCountryStats from '../../data/AllCountryStats';
-import LiveMapStats from '../../data/LiveMapStats';
 
 class Body extends Component {
    state = {
