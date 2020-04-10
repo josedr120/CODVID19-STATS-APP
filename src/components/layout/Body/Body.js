@@ -2,10 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { MDBContainer, MDBNav, MDBNavItem, MDBNavLink, MDBIcon, MDBTabContent, MDBTabPane } from 'mdbreact';
 import UsStatesStats from '../../data/UsStatesStats';
 import AllCountryStats from '../../data/AllCountryStats';
+import LiveMapStats from '../../data/LiveMapStats';
 
 class Body extends Component {
    state = {
-      activeItemJustified: '2',
+      activeItemJustified: '1',
    };
 
    toggleJustified = (tab) => (e) => {
@@ -40,6 +41,10 @@ class Body extends Component {
                      <AllCountryStats />
                   </MDBTabPane>
                </MDBTabContent>
+
+               <br />
+               <hr />
+               <br />
             </MDBContainer>
          </Fragment>
       );

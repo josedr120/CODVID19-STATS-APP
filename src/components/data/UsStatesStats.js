@@ -118,7 +118,7 @@ class UsStatesStats extends Component {
          };
          USDataTable.rows = rows;
 
-         return <MDBDataTable striped hover data={USDataTable} />;
+         return <MDBDataTable striped hover responsive={true} data={USDataTable} />;
       };
 
       return (
