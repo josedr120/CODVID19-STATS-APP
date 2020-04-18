@@ -1,82 +1,91 @@
 import React, { Component, Fragment } from 'react';
 import { MDBContainer, MDBSelect, MDBInput, MDBSelectInput, MDBFormInline, MDBSelectOptions, MDBSelectOption, MDBCard, MDBCardBody, MDBDataTable } from 'mdbreact';
-import { HorizontalBar, Pie, Bar } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchUsStatesStats } from '../../actions/usStatesStatsActions';
+import { fetchTodayUsStatesStats } from '../../redux/actions/usStatesTodayStatsActions';
+import { fetchYesterdayUsStatesStats } from '../../redux/actions/usStatesYesterdayStatsActions';
 
 class UsStatesStats extends Component {
    state = {
       select: '',
-      radio: '',
    };
 
    componentDidMount() {
-      this.props.fetchUsStatesStats();
+      this.props.fetchTodayUsStatesStats();
+      this.props.fetchYesterdayUsStatesStats();
    }
 
    handleChange = (e) => {
       this.setState({ select: e.target.value });
    };
 
-   onClick = (nr) => () => {
-      this.setState({
-         radio: nr,
-      });
-   };
-
    render() {
-      const { select, radio } = this.state;
-      const { states } = this.props;
+      const { select } = this.state;
+      const { today_us_states_stats, yesterday_us_states_stats } = this.props;
 
-      if (!states) {
+      if (!today_us_states_stats && !yesterday_us_states_stats) {
          return <h1>Loading</h1>;
       }
 
-      let names = [];
-      let dataChart = [];
+      let stateNames = [];
+      let yesterdayData = [];
+      let todayData = [];
       let rows = [];
 
-      states.forEach((state) => {
-         const statesNames = state.state;
+      yesterday_us_states_stats.map((res) => {
+         if (select === res.state) {
+            yesterdayData.push(res.cases / 100, res.todayCases / 100, res.deaths / 100, res.todayDeaths / 100, res.active / 100, res.tests / 100, res.testsPerOneMillion / 100);
+         }
+      });
 
-         names.push(statesNames);
-         if (select === statesNames) {
-            dataChart.push(state.cases, state.todayCases, state.deaths, state.todayDeaths, state.active, state.tests, state.testsPerOneMillion);
+      today_us_states_stats.map((res) => {
+         stateNames.push(res.state);
+
+         if (select === res.state) {
+            todayData.push(res.cases / 100, res.todayCases / 100, res.deaths / 100, res.todayDeaths / 100, res.active / 100, res.tests / 100, res.testsPerOneMillion / 100);
          }
 
          rows.push({
-            city: state.state,
-            cases: state.cases,
-            today_cases: state.todayCases,
-            deaths: state.deaths,
-            today_deaths: state.todayDeaths,
-            active: state.active,
+            city: res.state,
+            cases: res.cases,
+            todayCases: res.todayCases,
+            deaths: res.deaths,
+            todayDeaths: res.todayDeaths,
+            active: res.active,
+            tests: res.tests,
+            testsPerOneMillion: res.testsPerOneMillion,
          });
       });
 
-      const onShow = () => {
-         if (select) {
-            const USData = {
-               labels: ['Cases', 'Today Cases', 'Deaths', 'Today Deaths', 'Active', 'Test', 'Tests Per One Million'],
-               datasets: [
-                  {
-                     label: select,
-                     data: dataChart,
-                     fill: false,
-                     backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
-                     hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774'],
-                     borderWidth: 2,
-                  },
-               ],
-            };
+      const showChart = () => {
+         const dataHorizontal = {
+            labels: ['Cases', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey'],
+            datasets: [
+               {
+                  label: 'Today Data',
+                  data: todayData,
+                  fill: false,
+                  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+                  borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
+                  borderWidth: 1,
+               },
+               {
+                  label: 'Yesterday Data',
+                  data: yesterdayData,
+                  fill: false,
+                  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+                  borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
+                  borderWidth: 1,
+               },
+            ],
+         };
 
-            return <Bar data={USData} options={{ responsive: true }} />;
-         }
+         return <HorizontalBar data={dataHorizontal} options={{ responsive: true }} />;
       };
 
       const showTable = () => {
-         let USDataTable = {
+         const data = {
             columns: [
                {
                   label: 'City',
@@ -88,82 +97,88 @@ class UsStatesStats extends Component {
                   label: 'Cases',
                   field: 'cases',
                   sort: 'asc',
-                  width: 150,
+                  width: 270,
                },
                {
                   label: 'Today Cases',
-                  field: 'today_cases',
+                  field: 'todayCases',
                   sort: 'asc',
-                  width: 270,
+                  width: 200,
                },
                {
                   label: 'Deaths',
                   field: 'deaths',
                   sort: 'asc',
-                  width: 200,
+                  width: 100,
                },
                {
                   label: 'Today Deaths',
-                  field: 'today_deaths',
+                  field: 'todayDeaths',
                   sort: 'asc',
-                  width: 100,
+                  width: 150,
                },
                {
                   label: 'Active',
                   field: 'active',
                   sort: 'asc',
-                  width: 150,
+                  width: 100,
+               },
+               {
+                  label: 'Tests',
+                  field: 'tests',
+                  sort: 'asc',
+                  width: 100,
+               },
+               {
+                  label: 'Tests Per One Million',
+                  field: 'testsPerOneMillion',
+                  sort: 'asc',
+                  width: 100,
                },
             ],
          };
-         USDataTable.rows = rows;
-
-         return <MDBDataTable striped hover responsive={true} data={USDataTable} />;
+         data.rows = rows;
+         return (
+            <Fragment>
+               <h1 className='my-5 text-center'>Data - Table</h1>
+               <MDBDataTable className='my-5 py-5' striped hover data={data} responsive={true} />
+            </Fragment>
+         );
       };
 
       return (
          <Fragment>
-            <MDBContainer className='my-4'>
-               {/* <select onChange={this.handleChange} className='browser-default custom-select'>
-                  <option selected disabled>
-                     Choose your option
+            <select onChange={this.handleChange} className='browser-default mb-5 custom-select'>
+               <option selected disabled>
+                  Choose your option
+               </option>
+               {stateNames.map((names) => (
+                  <option key={names} value={names}>
+                     {names}
                   </option>
-                  {names.map((res) => (
-                     <option key={res} value={res}>
-                        {res}
-                     </option>
-                  ))}
-               </select> */}
+               ))}
+            </select>
 
-               {/* Material Select */}
-               {/* <MDBSelect label='Choose State'>
-                  <MDBSelectInput selected='Choose your country' />
-                  <MDBSelectOptions>
-                     <MDBSelectOption disabled>Choose your country</MDBSelectOption>
-                     {names.map((res) => (
-                        <MDBSelectOption key={res} value={res}>
-                           {res}
-                        </MDBSelectOption>
-                     ))}
-                  </MDBSelectOptions>
-               </MDBSelect> */}
-               <br />
-               {/* {onShow()} */}
+            {showChart()}
 
-               {showTable()}
-            </MDBContainer>
+            {/* Table */}
+
+            {showTable()}
          </Fragment>
       );
    }
 }
 
 UsStatesStats.propTypes = {
-   fetchUsStatesStats: PropTypes.func.isRequired,
-   states: PropTypes.array.isRequired,
+   fetchTodayUsStatesStats: PropTypes.func.isRequired,
+   fetchYesterdayUsStatesStats: PropTypes.func.isRequired,
+   today_us_states_stats: PropTypes.array.isRequired,
+   yesterday_us_states_stats: PropTypes.array.isRequired,
 };
 
 const mapToStateToProps = (state) => ({
-   states: state.states.stats,
+   today_us_states_stats: state.today_us_states_stats.todayStats,
+   yesterday_us_states_stats: state.yesterday_us_states_stats.yesterdayStats,
 });
 
-export default connect(mapToStateToProps, { fetchUsStatesStats })(UsStatesStats);
+export default connect(mapToStateToProps, { fetchTodayUsStatesStats, fetchYesterdayUsStatesStats })(UsStatesStats);
