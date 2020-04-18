@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAllCountriesStats } from '../../actions/allCountriesStatsActions';
+import { fetchAllCountriesStats } from '../../redux/actions/allCountriesStatsActions';
 import { MDBContainer, MDBDataTable } from 'mdbreact';
 import { Bar } from 'react-chartjs-2';
 
