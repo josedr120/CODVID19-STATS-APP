@@ -59,4 +59,13 @@ body {
       font-size: 3rem;
       text-align: center;
    }
+
+   .customLogo {
+      font-weight: bold;
+      font-size: 35px;
+
+      .logo {
+         width: 60px;
+      }
+   }
 }
