@@ -8,6 +8,7 @@ import Body from './components/layout/Body/Body';
 import GlobalStatsSection from './components/layout/Body/GlobalStatsSection';
 import UsStatesStatsSection from './components/layout/Body/UsStatesStatsSection';
 import Footer from './components/layout/Footer/Footer';
+import AllCountryStatsSection from './components/layout/Body/AllCountryStatsSection';
 
 class App extends Component {
    state = {
@@ -34,7 +35,10 @@ class App extends Component {
                <BrowserRouter>
                   <Header />
                   <GlobalStatsSection />
+                  <hr />
                   <UsStatesStatsSection />
+                  <hr />
+                  <AllCountryStatsSection />
                   <Footer />
                </BrowserRouter>
             </Fragment>

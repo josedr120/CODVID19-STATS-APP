@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { MDBContainer, MDBNav, MDBNavItem, MDBNavLink, MDBIcon, MDBTabContent, MDBTabPane } from 'mdbreact';
-import AllCountryStats from '../../data/AllCountryStats';
 
 class Body extends Component {
    state = {
@@ -33,9 +32,7 @@ class Body extends Component {
                </MDBNav>
                <MDBTabContent className='card' activeItem={this.state.activeItemJustified}>
                   <MDBTabPane tabId='1' role='tabpanel'></MDBTabPane>
-                  <MDBTabPane tabId='2' role='tabpanel'>
-                     <AllCountryStats />
-                  </MDBTabPane>
+                  <MDBTabPane tabId='2' role='tabpanel'></MDBTabPane>
                </MDBTabContent>
 
                <br />

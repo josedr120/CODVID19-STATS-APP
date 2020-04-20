@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { MDBContainer, MDBCard, MDBCardBody, MDBCardTitle, MDBBadge } from 'mdbreact';
-import UsStatesStats from '../../data/UsStatesStats';
+import AllCountryStats from '../../data/AllCountryStats';
 
-export class UsStatesStatsSection extends Component {
+class AllCountryStatsSection extends Component {
    render() {
       return (
          <Fragment>
             <MDBContainer className='my-4'>
                <MDBCard border='red'>
                   <MDBCardTitle className='my-5 text-center' tag='h1'>
-                     US County Stats
+                     All Country Stats
                   </MDBCardTitle>
                   <MDBCardBody>
-                     <UsStatesStats />
+                     <AllCountryStats />
                   </MDBCardBody>
                </MDBCard>
             </MDBContainer>
@@ -21,4 +21,4 @@ export class UsStatesStatsSection extends Component {
    }
 }
 
-export default UsStatesStatsSection;
+export default AllCountryStatsSection;
