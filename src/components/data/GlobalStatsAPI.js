@@ -53,7 +53,7 @@ export class GlobalStatsAPI extends Component {
 
                <MDBCol md='4'>
                   <MDBCard border='danger' className='mb-5' style={{ maxWidth: '18rem' }}>
-                     <MDBCardHeader>Today Cases</MDBCardHeader>
+                     <MDBCardHeader>Cases Today</MDBCardHeader>
                      <MDBCardBody className='text-danger'>
                         <MDBCardTitle tag='h5'>
                            <CountUp end={todayCases} separator=',' duration={2.75} />
@@ -75,7 +75,7 @@ export class GlobalStatsAPI extends Component {
 
                <MDBCol md='4'>
                   <MDBCard border='dark' className='mb-5' style={{ maxWidth: '18rem' }}>
-                     <MDBCardHeader>Today Deaths</MDBCardHeader>
+                     <MDBCardHeader>Deaths Today</MDBCardHeader>
                      <MDBCardBody className='text-dark'>
                         <MDBCardTitle tag='h5'>
                            <CountUp end={todayDeaths} separator=',' duration={2.75} />
