@@ -9,7 +9,7 @@ export class UsStatesStatsSection extends Component {
             <MDBContainer className='my-4'>
                <MDBCard border='red'>
                   <MDBCardTitle className='my-5 text-center' tag='h1'>
-                     US County Stats
+                     US State Stats
                   </MDBCardTitle>
                   <MDBCardBody>
                      <UsStatesStats />
