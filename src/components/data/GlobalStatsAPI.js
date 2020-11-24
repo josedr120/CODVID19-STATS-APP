@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchGlobalStats } from '../../redux/actions/globalStatsActions';
 import CountUp from 'react-countup';
 
-export class GlobalStatsAPI extends Component {
+class GlobalStatsAPI extends Component {
    componentDidMount() {
       this.props.fetchGlobalStats();
    }
@@ -36,6 +36,9 @@ export class GlobalStatsAPI extends Component {
                            <CountUp end={updated} separator=',' duration={2.75} />
                         </MDBCardTitle>
                      </MDBCardBody>
+                     {/* <MDBCardFooter transparent border='success'>
+                        <small>Last Updated</small>
+                     </MDBCardFooter> */}
                   </MDBCard>
                </MDBCol>
 
