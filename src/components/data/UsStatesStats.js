@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { MDBContainer, MDBSelect, MDBInput, MDBAlert, MDBSelectInput, MDBFormInline, MDBSelectOptions, MDBSelectOption, MDBCard, MDBCardBody, MDBDataTable, MDBRow, MDBCol } from 'mdbreact';
+import { MDBContainer, MDBSelect, MDBInput, MDBAlert, MDBSelectInput, MDBFormInline, MDBSelectOptions, MDBSelectOption, MDBCard, MDBCardBody, MDBDataTableV5, MDBRow, MDBCol } from 'mdbreact';
 import { HorizontalBar, Pie } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -153,7 +153,7 @@ class UsStatesStats extends Component {
                   label: 'City',
                   field: 'city',
                   sort: 'asc',
-                  width: 150,
+                  width: 200,
                },
                {
                   label: 'Cases',
@@ -192,7 +192,7 @@ class UsStatesStats extends Component {
                   width: 100,
                },
                {
-                  label: 'Tests Per One Million',
+                  label: 'TPOM',
                   field: 'testsPerOneMillion',
                   sort: 'asc',
                   width: 100,
@@ -204,7 +204,7 @@ class UsStatesStats extends Component {
             <Fragment>
                <h1 className='my-5 text-center font-weight-bold'>Data - Table</h1>
                <hr />
-               <MDBDataTable className='my-5' striped hover data={data} responsive={true} />
+               <MDBDataTableV5 className='my-5' entriesOptions={[10, 20, 50]} entries={20} data={data} responsive={true} proSelect materialSearch />
             </Fragment>
          );
       };
