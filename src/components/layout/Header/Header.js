@@ -10,9 +10,10 @@ class Header extends Component {
             <MDBAnimation reveal type='slideInDown'>
                <MDBCard color='indigo' text='white' className='mb-5 header'>
                   <MDBCardBody>
-                     <h1 className='my-5 py-5 text-center customLogo'>
+                     <h1>* The API that this site uses has gone EOL. A redesign of this website is coming soon with the new API.</h1>
+                     <h2 className='my-5 py-5 text-center customLogo'>
                         C <img src={logo} className='logo img-fluid' />D V I D - 19
-                     </h1>
+                     </h2>
                   </MDBCardBody>
                </MDBCard>
             </MDBAnimation>
