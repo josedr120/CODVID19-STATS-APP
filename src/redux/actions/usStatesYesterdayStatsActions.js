@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchYesterdayUsStatesStats = () => (dispatch) => {
    axios
-      .get('https://corona.lmao.ninja/v2/states?yesterday=true')
+      .get('https://disease.sh/v3/covid-19/states?yesterday=true')
       .then((res) =>
          dispatch({
             type: FETCH_YESTERDAY_US_STATES_STATS,

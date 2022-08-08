@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchAllUsStateStats = () => (dispatch) => {
    axios
-      .get('https://corona.lmao.ninja/v2/countries/USA')
+      .get('https://disease.sh/v3/covid-19/countries/USA')
       .then((res) =>
          dispatch({
             type: FETCH_ALL_US_STATES_STATS,
