@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark, cyberpunk;
+}
+
+/* Custom styles */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--b2));
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--bc) / 0.5);
+}
+
+/* Stat card hover effect */
+.stat-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px oklch(var(--bc) / 0.1);
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--b3)) 25%,
+    oklch(var(--b2)) 50%,
+    oklch(var(--b3)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Chart container responsive height */
+.chart-container {
+  position: relative;
+  height: 300px;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    height: 400px;
+  }
+}
+
+/* Table improvements */
+.table th {
+  background: oklch(var(--b2));
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Animated counter styling */
+.counter-value {
+  font-variant-numeric: tabular-nums;
+}
