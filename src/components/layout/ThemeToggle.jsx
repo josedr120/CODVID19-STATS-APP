@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const themes = ['light', 'dark', 'cyberpunk']
+const themes = ['light', 'dark', 'forest']
 
 function ThemeToggle() {
   const [theme, setTheme] = useState(() => {
